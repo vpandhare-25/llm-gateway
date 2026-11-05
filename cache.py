@@ -14,8 +14,10 @@ from typing import Optional
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# ---------- Settings you will tune on Day 3 ----------
-SIMILARITY_THRESHOLD = 0.90   # how similar two questions must be to count as "the same" (0 to 1)
+# ---------- Settings (tuned with the Day 3 benchmark) ----------
+SIMILARITY_THRESHOLD = 0.85   # how similar two questions must be to count as "the same" (0 to 1).
+                              # Chosen from the Day 3 benchmark: 0.85 had 0 wrong hits on 500 questions;
+                              # 0.80 caught more repeats but confused e.g. World War 1 with World War 2.
 TTL_SECONDS = 7 * 24 * 3600   # how long a saved answer stays valid (here: 7 days)
 
 # ---------- Setup (done for you) ----------
