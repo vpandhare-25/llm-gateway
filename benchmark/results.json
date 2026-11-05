@@ -11,45 +11,45 @@
   "results": [
     {
       "threshold": 0.8,
-      "hit_rate": 0.502,
-      "hits": 251,
-      "correct_hits": 249,
+      "hit_rate": 0.498,
+      "hits": 249,
+      "correct_hits": 247,
       "wrong_hits": 2,
-      "repeats": 362,
+      "repeats": 360,
       "missed_repeats": 113,
-      "repeat_recall": 0.688,
-      "avg_latency_ms": 23471,
-      "avg_cache_hit_latency_ms": 13.8,
-      "cost_usd": 0.058358,
-      "cost_saved_pct": 52.3
+      "repeat_recall": 0.686,
+      "avg_latency_ms": 23533,
+      "avg_cache_hit_latency_ms": 13.1,
+      "cost_usd": 0.058528,
+      "cost_saved_pct": 52.2
     },
     {
       "threshold": 0.85,
-      "hit_rate": 0.38,
-      "hits": 190,
-      "correct_hits": 190,
+      "hit_rate": 0.378,
+      "hits": 189,
+      "correct_hits": 189,
       "wrong_hits": 0,
-      "repeats": 362,
-      "missed_repeats": 172,
+      "repeats": 360,
+      "missed_repeats": 171,
       "repeat_recall": 0.525,
-      "avg_latency_ms": 30319,
-      "avg_cache_hit_latency_ms": 13.7,
-      "cost_usd": 0.07453,
-      "cost_saved_pct": 39.1
+      "avg_latency_ms": 30349,
+      "avg_cache_hit_latency_ms": 13.0,
+      "cost_usd": 0.074616,
+      "cost_saved_pct": 39.0
     },
     {
       "threshold": 0.9,
-      "hit_rate": 0.238,
-      "hits": 119,
-      "correct_hits": 119,
+      "hit_rate": 0.236,
+      "hits": 118,
+      "correct_hits": 118,
       "wrong_hits": 0,
-      "repeats": 362,
-      "missed_repeats": 243,
-      "repeat_recall": 0.329,
-      "avg_latency_ms": 37949,
+      "repeats": 360,
+      "missed_repeats": 242,
+      "repeat_recall": 0.328,
+      "avg_latency_ms": 37981,
       "avg_cache_hit_latency_ms": 13.5,
-      "cost_usd": 0.093525,
-      "cost_saved_pct": 23.6
+      "cost_usd": 0.09361,
+      "cost_saved_pct": 23.5
     },
     {
       "threshold": 0.95,
@@ -57,21 +57,17 @@
       "hits": 32,
       "correct_hits": 32,
       "wrong_hits": 0,
-      "repeats": 362,
-      "missed_repeats": 330,
-      "repeat_recall": 0.088,
+      "repeats": 360,
+      "missed_repeats": 328,
+      "repeat_recall": 0.089,
       "avg_latency_ms": 46949,
-      "avg_cache_hit_latency_ms": 12.9,
+      "avg_cache_hit_latency_ms": 13.5,
       "cost_usd": 0.115415,
       "cost_saved_pct": 5.7
     }
   ],
   "should_cache_check": {
-    "leaked": [
-      "What was the score of last night's game?",
-      "Which team won last night's game?",
-      "Who won the game last night?"
-    ],
+    "leaked": [],
     "over_blocked": [
       "What is the difference between AC and DC current?"
     ]

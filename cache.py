@@ -100,6 +100,7 @@ PERSONAL_WORDS = {"my", "me", "mine", "myself", "i'm", "i've", "our", "ours"}
 TIME_WORDS = {
     "today", "tonight", "tomorrow", "yesterday", "now", "currently", "current",
     "latest", "recent", "recently", "this week", "this month", "this year",
+    "last night",  # added after the benchmark: "Who won the game last night?" was being cached
 }
 
 

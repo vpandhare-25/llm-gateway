@@ -58,12 +58,12 @@ the same traffic went to a paid API.
 | Threshold | Hit rate | Wrong hits | Repeats caught | Avg latency | Cost saved |
 |---|---|---|---|---|---|
 | no cache | 0% | – | – | 49.7 s | – |
-| 0.80 | 50.2% | **2** | 249 / 362 | 23.5 s | 52.3% |
-| **0.85** ✅ | **38.0%** | **0** | 190 / 362 | 30.3 s | **39.1%** |
-| 0.90 | 23.8% | 0 | 119 / 362 | 37.9 s | 23.6% |
-| 0.95 | 6.4% | 0 | 32 / 362 | 46.9 s | 5.7% |
+| 0.80 | 49.8% | **2** | 247 / 360 | 23.5 s | 52.2% |
+| **0.85** ✅ | **37.8%** | **0** | 189 / 360 | 30.3 s | **39.0%** |
+| 0.90 | 23.6% | 0 | 118 / 360 | 38.0 s | 23.5% |
+| 0.95 | 6.4% | 0 | 32 / 360 | 46.9 s | 5.7% |
 
-*A repeat is a question whose meaning was already in the cache. 362 of the 500 questions
+*A repeat is a question whose meaning was already in the cache. 360 of the 500 questions
 were repeats, so the best possible hit rate here is 72%. A cache hit takes ~14 ms; an
 Ollama call took ~50 s on a MacBook Air.*
 
@@ -77,7 +77,8 @@ Ollama call took ~50 s on a MacBook Air.*
   **0.85 was the lowest threshold with zero wrong hits**, so the gateway uses it.
 - **Keyword filters are simple but leaky.** `should_cache` blocks words like "my", "today"
   and "latest". The benchmark found that it:
-  - **leaked** 3 time-sensitive questions about "last night's game", because "last night" isn't on the list
+  - **leaked** 3 time-sensitive questions about "last night's game", because "last night" wasn't
+    on the list. I added it, and the benchmark now shows 0 leaks. The numbers above are after this fix.
   - **over-blocked** "What is the difference between AC and DC current?", because "current" here means electricity, not "now"
 - **The embedding model is faster on the CPU than on the Mac GPU.** On Apple's GPU (MPS), each
   new question length triggered a stall of up to ~3 s. On the CPU, lookups take a steady ~10 ms.
