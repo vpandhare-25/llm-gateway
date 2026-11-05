@@ -3,3 +3,4 @@ __pycache__/
 logs/
 chroma_db/
 .DS_Store
+.claude/
