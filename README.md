@@ -122,6 +122,30 @@ curl -s localhost:8000/stats
 
 The response's `"source"` field is `"llm"` the first time and `"cache"` for a similar question later.
 
+## Run with Docker
+
+The gateway and dashboard can also run in containers, so nothing but Docker needs to be
+installed. Ollama stays on the host: Docker on a Mac can't use the GPU, which would make
+the model much slower inside a container.
+
+```bash
+ollama serve                    # on the host, if Ollama isn't already running
+docker compose up --build       # gateway on :8000, dashboard on :8501
+```
+
+- **One image, two services.** [docker-compose.yml](docker-compose.yml) starts the gateway
+  (`uvicorn`) and the dashboard (`streamlit`) from the same image.
+- **Reaching Ollama.** Inside a container, `localhost` is the container itself, so the
+  gateway reads `OLLAMA_URL` from the environment. It is set to
+  `http://host.docker.internal:11434`, Docker's name for the host machine.
+- **Data that survives restarts.** The cache lives in a Docker volume (`cache-data`), and
+  logs are written to the project's `logs/` folder, which the dashboard also reads.
+- **A smaller image.** The [Dockerfile](Dockerfile) installs CPU-only PyTorch, which skips
+  several GB of GPU libraries, and downloads the embedding model at build time instead of
+  on every start.
+
+Stop with `Ctrl+C`, or run `docker compose down` (add `-v` to also delete the cache volume).
+
 ## Project structure
 
 | File | What it does |
@@ -130,6 +154,7 @@ The response's `"source"` field is `"llm"` the first time and `"cache"` for a si
 | [cache.py](cache.py) | Semantic cache: embeddings, ChromaDB lookups, the threshold + TTL check, and the `should_cache` rules. |
 | [dashboard.py](dashboard.py) | Streamlit dashboard for live stats and benchmark results. |
 | [benchmark/](benchmark/) | Benchmark questions, script, recorded Ollama answers and results. |
+| [Dockerfile](Dockerfile), [docker-compose.yml](docker-compose.yml) | Container image and the two-service setup (gateway + dashboard). |
 
 ## Ideas for next steps
 
@@ -137,4 +162,4 @@ The response's `"source"` field is `"llm"` the first time and `"cache"` for a si
 - Use a different threshold per type of question (facts vs how-to).
 - Add a "was this answer helpful?" signal to catch wrong hits in real traffic.
 
-**Built with:** Python, FastAPI, Ollama (llama3.2), ChromaDB, sentence-transformers, tiktoken, Streamlit.
+**Built with:** Python, FastAPI, Ollama (llama3.2), ChromaDB, sentence-transformers, tiktoken, Streamlit, Docker.
