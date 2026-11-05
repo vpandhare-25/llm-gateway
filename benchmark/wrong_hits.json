@@ -1,0 +1,14 @@
+[
+  {
+    "threshold": 0.8,
+    "question": "How do I undo a git push?",
+    "matched_question": "How can I undo a git commit I just made?",
+    "similarity": 0.821
+  },
+  {
+    "threshold": 0.8,
+    "question": "When did World War 1 end?",
+    "matched_question": "What year did WWII end?",
+    "similarity": 0.831
+  }
+]
