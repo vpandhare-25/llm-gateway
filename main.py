@@ -9,6 +9,7 @@ question was answered recently, we return that answer instead (source="cache").
 Every request is logged with its latency and token counts so /stats can compare.
 """
 import json
+import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,7 +21,9 @@ from pydantic import BaseModel
 
 import cache  # our semantic cache (cache.py)
 
-OLLAMA_URL = "http://localhost:11434/api/chat"  # where Ollama listens on your Mac
+# Where Ollama listens. Defaults to your Mac; inside Docker we set OLLAMA_URL to
+# http://host.docker.internal:11434/api/chat ("the computer running Docker").
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434/api/chat")
 MODEL = "llama3.2"                               # the model you downloaded
 LOG_FILE = Path(__file__).parent / "logs" / "requests.jsonl"
 
