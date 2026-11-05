@@ -99,6 +99,8 @@ Ollama call took ~50 s on a MacBook Air.*
 
 It only reads the log and results files, so it works when the gateway is off.
 
+![Dashboard: live gateway stats, then the benchmark charts, wrong hits and should_cache check](docs/dashboard.png)
+
 ## Run it
 
 Requires Python 3.9+ and [Ollama](https://ollama.com) with `llama3.2` pulled (`ollama pull llama3.2`).
