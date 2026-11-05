@@ -60,7 +60,7 @@ SEED = 42  # fixed seed = the same shuffled order every run, so results are repe
 PRICE_MODEL = "gpt-4o-mini"
 PRICE_PER_1M_INPUT_TOKENS = 0.15    # US dollars per 1 million input tokens
 PRICE_PER_1M_OUTPUT_TOKENS = 0.60   # US dollars per 1 million output tokens
-PRICE_CHECKED_ON = "not yet checked"
+PRICE_CHECKED_ON = "2026-11-05"
 _tokenizer = tiktoken.get_encoding("o200k_base")  # tokenizer used by gpt-4o models
 
 
