@@ -4,3 +4,4 @@ httpx
 chromadb
 sentence-transformers
 tiktoken
+streamlit
