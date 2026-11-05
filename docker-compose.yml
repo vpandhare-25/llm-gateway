@@ -1,0 +1,29 @@
+# Starts the gateway and the dashboard together:  docker compose up --build
+# Ollama must already be running on your computer (it is not in a container).
+services:
+  gateway:
+    build: .
+    image: llm-gateway          # both services use the same image, built once
+    ports:
+      - "8000:8000"             # your computer's port 8000 -> the container's port 8000
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434/api/chat
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # makes host.docker.internal work on Linux too
+    volumes:
+      - ./logs:/app/logs        # logs are written to the project's logs/ folder
+      - cache-data:/app/chroma_db   # the cache survives restarts (a Docker-managed volume)
+
+  dashboard:
+    image: llm-gateway
+    depends_on:
+      - gateway                 # start after the gateway (its image is built there)
+    command: streamlit run dashboard.py --server.address 0.0.0.0 --server.port 8501 --server.headless true
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./logs:/app/logs        # same logs folder as the gateway, so the dashboard sees live requests
+      - ./benchmark:/app/benchmark   # shows the latest benchmark results without rebuilding
+
+volumes:
+  cache-data:

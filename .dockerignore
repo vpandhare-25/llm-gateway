@@ -1,0 +1,8 @@
+# Files Docker should NOT copy into the image (keeps it small, and keeps local data out).
+.venv/
+__pycache__/
+.git/
+.claude/
+chroma_db/
+logs/
+.DS_Store
